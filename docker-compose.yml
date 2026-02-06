@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  pydoll-phase1:
+    build: .
+    environment:
+      - RUNNING_IN_DOCKER=true
+      - CDP_HOST=docker.for.mac.localhost
+      - CDP_PORT=9222
+    volumes:
+      - ./data/output:/app/output
+    command: ["python", "-m", "app.main"]
