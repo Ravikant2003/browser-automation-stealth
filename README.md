@@ -12,6 +12,19 @@ The system attaches to an existing Chrome instance running with CDP enabled and 
 - **PyDoll** provides a higher-level, element‑oriented API that is easier to reason about and maintain.
 - Combined, you get **stealth + stability** without relying purely on one layer.
 
+## Stealth Measures (Beyond PyDoll)
+
+The pipeline applies several CDP-level patches to reduce bot detection:
+- **Pre‑document script injection** (`Page.addScriptToEvaluateOnNewDocument`)
+  - `navigator.webdriver` set to `undefined`
+  - `window.chrome` stubbed
+  - `navigator.plugins` spoofed
+- **Human‑like mouse movement** via `Input.dispatchMouseEvent`
+
+These are implemented in:
+- `app/browser/cdp_utils.py`
+- `app/main.py`
+
 ## Architecture Overview
 
 ```
